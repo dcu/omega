@@ -1,0 +1,10 @@
+angular.module("<%= resource_name %>_model", ["ngResource"]).factory "<%= model_name %>", ($resource) ->
+  <%= model_name %> = $resource("<%= route %>/:id",
+    format: "json"
+  ,
+    update:
+      method: "PUT"
+  )
+
+  return <%= model_name %>
+

@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.expand_path("../../lib", __FILE__)
+
+require 'omega'
+require 'omega/generators'
+
+module Omega
+  class CLI < Thor
+    include Thor::Actions
+
+    register Omega::Generators::Project, :init, "init <project_name>", "Generates a new project"
+    register Omega::Generators::Scaffold, :scaffold, "scaffold <scaffold_name (plural)>", "Generates a new scaffold"
+  end
+end
+
+
+Omega::CLI.start
+

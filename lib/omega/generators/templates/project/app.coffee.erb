@@ -1,0 +1,11 @@
+dependencies = []
+
+window.App = angular.module("<%= name %>", dependencies)
+
+App.config ($routeProvider, $locationProvider) ->
+  $locationProvider.html5Mode true
+
+  $routeProvider.when "/",
+    controller: WelcomeController
+    templateUrl: "/_templates/welcome/index"
+

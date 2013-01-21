@@ -1,0 +1,11 @@
+class <%= model_name %>
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  field :name, :type => String
+
+  def self.publishable_fields
+    %w[_id name]
+  end
+end
+
