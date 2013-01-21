@@ -1,0 +1,17 @@
+!!! 5
+%html(lang="en" ng-app="<%= name %>")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title
+      <%= name.titleize %>
+
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      %script(src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript" charset="utf-8")
+    %script(src="/assets/application.js" type="text/javascript" charset="utf-8")
+
+  %body
+    %div(ng-view)
+

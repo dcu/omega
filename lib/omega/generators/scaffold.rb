@@ -49,11 +49,11 @@ module Omega
         routes = %@
   $routeProvider.when "#{route}",
     controller: #{class_name}IndexController
-    templateUrl: "/_templates#{route}/index"
+    templateUrl: "/_templates#{route}/index.html"
 
   $routeProvider.when "#{route}/:id",
     controller: #{class_name}ShowController
-    templateUrl: "/_templates#{route}/show"
+    templateUrl: "/_templates#{route}/show.html"
     
 @
 

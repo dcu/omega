@@ -14,6 +14,22 @@ module Omega
         template "project/app.coffee.erb", "#{name}/app/app.coffee"
       end
 
+      def generate_layout
+        template "project/layout.haml.erb", "#{name}/assets/layouts/application.haml"
+      end
+
+      def download_angular
+        get "http://code.angularjs.org/1.0.3/angular.js", "#{name}/assets/javascripts/angular.js"
+
+        [
+          "http://code.angularjs.org/1.0.3/angular-resource.js",
+          "http://code.angularjs.org/1.0.3/angular-cookies.js",
+          "http://code.angularjs.org/1.0.3/angular-sanitize.js"
+        ].each do |url|
+          get url, "#{name}/assets/javascripts/angular/#{url.split("/").last}"
+        end
+      end
+
       private
     end
   end
