@@ -1,0 +1,8 @@
+
+ruby "1.9.3"
+
+#gem "omega-framework"
+gem "sprockets"
+gem "coffee-script"
+gem "thin"
+

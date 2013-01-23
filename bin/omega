@@ -4,6 +4,8 @@ $:.unshift File.expand_path("../../lib", __FILE__)
 
 require 'omega'
 require 'omega/generators'
+require 'rack/handler'
+require 'thin'
 
 module Omega
   class CLI < Thor
@@ -11,6 +13,20 @@ module Omega
 
     register Omega::Generators::Project, :init, "init <project_name>", "Generates a new project"
     register Omega::Generators::Scaffold, :scaffold, "scaffold <scaffold_name (plural)>", "Generates a new scaffold"
+
+    desc "start", "Starts a development server"
+    def start
+      require './config/boot'
+
+      server_options = {}
+      server_options[:Host] = '0.0.0.0'
+      server_options[:Port] = 3000
+      #server_options[:server] = Rack::Handler::Thin
+      server_options[:app] = Omega::Application.instance
+
+      server = Rack::Server.new(server_options)
+      server.start
+    end
   end
 end
 

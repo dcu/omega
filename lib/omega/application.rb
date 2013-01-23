@@ -20,6 +20,11 @@ module Omega
       @response = Rack::Response.new
       @env = env
 
+      if request.path_info.start_with?("/assets/")
+        env['PATH_INFO'].gsub!("/assets", "")
+        return Omega::Assets.environment.call(env)
+      end
+
       catch(:halt) {
         process_request(request)
       }.finish

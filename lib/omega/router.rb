@@ -37,8 +37,6 @@ module Omega
       route_info[:matcher] = %r{^#{matcher}$}
 
       routes[http_method] << route_info
-
-      self.sort_routes! # FIXME: move this from here!
     end
   end
 end
