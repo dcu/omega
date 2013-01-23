@@ -15,6 +15,10 @@ module Omega
     def halt(status, body = nil, headers = nil)
       Omega::Application.instance.halt(status, body, headers)
     end
+
+    def ok
+      halt 200
+    end
   end
 end
 
