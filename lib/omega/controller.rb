@@ -19,6 +19,10 @@ module Omega
     def ok
       halt 200
     end
+
+    def respond_with(object)
+      object.to_json
+    end
   end
 end
 

@@ -6,5 +6,8 @@ require 'rubygems' unless defined?(Gem)
 require 'bundler/setup'
 Bundler.require(:default, OMEGA_ENV)
 
+# Load mongoid configuration
+Mongoid.load!("#{Omega.root}/config/mongoid.yml")
+
 Omega.load!
 

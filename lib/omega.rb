@@ -2,6 +2,8 @@ require 'json'
 require 'set'
 require 'pry'
 
+require 'mongoid'
+require 'sprockets'
 require 'active_support'
 require 'active_support/core_ext/hash'
 

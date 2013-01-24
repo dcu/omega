@@ -10,6 +10,10 @@ module Omega
         directory "skel", name
       end
 
+      def generate_mongoid_yml
+        template "project/mongoid.yml.erb", "#{name}/config/mongoid.yml"
+      end
+
       def create_angular_app
         template "project/app.coffee.erb", "#{name}/app/app.coffee"
       end
@@ -31,6 +35,9 @@ module Omega
       end
 
       private
+        def dbname
+          name.underscore
+        end
     end
   end
 end

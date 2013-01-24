@@ -41,7 +41,6 @@ module Omega
       response.write eval_action(route_info)
 
       throw :halt, response
-
     end
 
     def halt(status, body = nil, headers = nil)
