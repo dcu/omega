@@ -3,6 +3,7 @@ require 'set'
 require 'pry'
 require 'find'
 require 'haml'
+require 'sass'
 
 require 'mongoid'
 require 'sprockets'

@@ -6,6 +6,7 @@ module Omega
 
     def self.setup!
       self.environment.append_path("#{Omega.root}/assets")
+      self.environment.append_path("#{Omega.root}/app")
     end
   end
 end

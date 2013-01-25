@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = "2013-01-24"
+  s.date = "2013-01-25"
   s.description = "Ruby web framework to create angular-based applications."
   s.email = "krawek@gmail.com"
   s.executables = ["omega"]
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
     "lib/omega/generators/scaffold.rb",
     "lib/omega/generators/templates/project/app.coffee.erb",
     "lib/omega/generators/templates/project/layout.haml.erb",
+    "lib/omega/generators/templates/project/mongoid.yml.erb",
     "lib/omega/generators/templates/scaffold/controller.rb.erb",
     "lib/omega/generators/templates/scaffold/index_controller.coffee.erb",
     "lib/omega/generators/templates/scaffold/index_style.sass.erb",
@@ -64,8 +65,8 @@ Gem::Specification.new do |s|
     "lib/omega/generators/templates/skel/config/boot.rb",
     "lib/omega/generators/templates/skel/config/env.rb.sample",
     "lib/omega/generators/templates/skel/config/initializers/.empty_directory",
-    "lib/omega/generators/templates/skel/config/mongoid.yml",
     "lib/omega/router.rb",
+    "omega-framework.gemspec",
     "skel/Gemfile",
     "skel/Procfile",
     "skel/README.md",
@@ -102,6 +103,8 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sprockets>, [">= 0"])
       s.add_runtime_dependency(%q<coffee-script>, [">= 0"])
       s.add_runtime_dependency(%q<mongoid>, [">= 0"])
+      s.add_runtime_dependency(%q<haml>, [">= 0"])
+      s.add_runtime_dependency(%q<sass>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
@@ -110,6 +113,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sprockets>, [">= 0"])
       s.add_dependency(%q<coffee-script>, [">= 0"])
       s.add_dependency(%q<mongoid>, [">= 0"])
+      s.add_dependency(%q<haml>, [">= 0"])
+      s.add_dependency(%q<sass>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -119,6 +124,8 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sprockets>, [">= 0"])
     s.add_dependency(%q<coffee-script>, [">= 0"])
     s.add_dependency(%q<mongoid>, [">= 0"])
+    s.add_dependency(%q<haml>, [">= 0"])
+    s.add_dependency(%q<sass>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
