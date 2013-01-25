@@ -20,6 +20,10 @@ module Omega
       @response = Rack::Response.new
       @env = env
 
+      if Omega.env == :development
+        compile_templates
+      end
+
       if request.path_info.start_with?("/assets/")
         env['PATH_INFO'].gsub!("/assets", "")
         return Omega::Assets.environment.call(env)
@@ -59,6 +63,25 @@ module Omega
       controller.env = @env
 
       controller.instance_eval(&route_info[:block])
+    end
+
+    def compile_templates
+      templates.each do |template_path|
+        template = Tilt::HamlTemplate.new(template_path)
+
+        html_file = template_path.sub(%r{^#{Regexp.escape(Omega.root)}/app/(\w+)/views}, 'public/_templates/\1')
+        html_file << ".html" if html_file !~ /\.html$/
+
+        FileUtils.mkpath(File.dirname(html_file))
+
+        File.open(html_file, "w") do |f|
+          f.write template.render
+        end
+      end
+    end
+
+    def templates
+      @templates ||= Find.find("#{Omega.root}/app").select {|path| path =~ /\.haml$/ }
     end
   end
 end

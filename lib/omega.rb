@@ -1,6 +1,8 @@
 require 'json'
 require 'set'
 require 'pry'
+require 'find'
+require 'haml'
 
 require 'mongoid'
 require 'sprockets'
@@ -15,6 +17,10 @@ require 'omega/controller'
 module Omega
   def self.root
     OMEGA_ROOT
+  end
+
+  def self.env
+    OMEGA_ENV
   end
 
   def self.require_files!
