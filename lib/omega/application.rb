@@ -1,9 +1,22 @@
 module Omega
   class Application
+    attr_reader :middleware
     attr_reader :request, :params, :env, :response
+    attr_accessor :public_dir
 
     def initialize
-      @builder = Rack::Builder.new(self)
+      super
+    end
+
+    def self.middleware
+      @middleware ||= begin
+        mw = Rack::Builder.new
+        mw.use Rack::CommonLogger
+        mw.use Omega::Static, :public_folder => "#{Omega.root}/public"
+        mw.use Omega::Assets
+        mw.run self.new
+        mw
+      end
     end
 
     def self.instance
@@ -11,7 +24,7 @@ module Omega
     end
 
     def self.call(env)
-      @builder.dup.call(env)
+      self.middleware.dup.call(env)
     end
 
     def call(env)
@@ -24,17 +37,12 @@ module Omega
         compile_templates
       end
 
-      if request.path_info.start_with?("/assets/")
-        env['PATH_INFO'].gsub!("/assets", "")
-        return Omega::Assets.environment.call(env)
-      end
-
       catch(:halt) {
-        process_request(request)
+        process_request!
       }.finish
     end
 
-    def process_request(request)
+    def process_request!
       match, route_info = Omega::Router.find(request.request_method, request.path_info)
       halt 404 if match.nil?
 
@@ -69,7 +77,7 @@ module Omega
       templates.each do |template_path|
         template = Tilt::HamlTemplate.new(template_path)
 
-        html_file = template_path.sub(%r{^#{Regexp.escape(Omega.root)}/app/(\w+)/views}, 'public/_templates/\1')
+        html_file = template_path.sub(%r{^#{Regexp.escape(Omega.root)}/app/(\w+)/views/(.+)\.haml}, 'public/_templates/\1/\2')
         html_file << ".html" if html_file !~ /\.html$/
 
         FileUtils.mkpath(File.dirname(html_file))

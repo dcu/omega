@@ -22,7 +22,7 @@ module Omega
       server_options[:Host] = '0.0.0.0'
       server_options[:Port] = 3000
       #server_options[:server] = Rack::Handler::Thin
-      server_options[:app] = Omega::Application.instance
+      server_options[:app] = Omega::Application
 
       server = Rack::Server.new(server_options)
       server.start
