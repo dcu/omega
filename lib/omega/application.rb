@@ -10,12 +10,12 @@ module Omega
 
     def self.middleware
       @middleware ||= begin
-        mw = Rack::Builder.new
-        mw.use Rack::CommonLogger
-        mw.use Omega::Static, :public_folder => "#{Omega.root}/public"
-        mw.use Omega::Assets
-        mw.run self.new
-        mw
+        builder = Rack::Builder.new
+        builder.use Rack::CommonLogger
+        builder.use Omega::Static, :public_folder => "#{Omega.root}/public"
+        builder.use Omega::Assets
+        builder.run self.new
+        builder
       end
     end
 
@@ -31,7 +31,6 @@ module Omega
       @request = Rack::Request.new(env)
       @params = request.params
       @response = Rack::Response.new
-      @env = env
 
       if Omega.env == :development
         compile_templates
@@ -74,22 +73,34 @@ module Omega
     end
 
     def compile_templates
-      templates.each do |template_path|
+      templates.each do |template_path, ctime|
+        next if File.mtime(template_path) < ctime
+
         template = Tilt::HamlTemplate.new(template_path)
 
-        html_file = template_path.sub(%r{^#{Regexp.escape(Omega.root)}/app/(\w+)/views/(.+)\.haml}, 'public/_templates/\1/\2')
+        html_file = template_path.sub(%r{^#{Regexp.escape(Omega.root)}/(app|assets)/(\w+)(/views){0,1}/(.+)\.haml}, 'public/_templates/\2/\4')
         html_file << ".html" if html_file !~ /\.html$/
 
         FileUtils.mkpath(File.dirname(html_file))
 
+        puts ">> Compiling #{template_path} => #{html_file}"
         File.open(html_file, "w") do |f|
           f.write template.render
         end
+
+        templates[template_path] = Time.now
       end
     end
 
     def templates
-      @templates ||= Find.find("#{Omega.root}/app").select {|path| path =~ /\.haml$/ }
+      @templates ||= begin
+        temp = {}
+        Find.find("#{Omega.root}/app", "#{Omega.root}/assets").each do |path|
+          temp[path] = File.mtime(path) - 1 if path.end_with?(".haml")
+        end
+
+        temp
+      end
     end
   end
 end
