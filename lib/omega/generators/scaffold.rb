@@ -49,15 +49,15 @@ module Omega
         routes = %@
   $routeProvider.when "#{route}",
     controller: #{class_name}IndexController
-    templateUrl: "/_templates#{route}/index.html"
+    templateUrl: "/_templates#{route}/index_view.html"
 
   $routeProvider.when "#{route}/:id",
     controller: #{class_name}ShowController
-    templateUrl: "/_templates#{route}/show.html"
-    
+    templateUrl: "/_templates#{route}/show_view.html"
+
 @
 
-        inject_into_file "app/app.coffee", routes, :before => "$routeProvider.when"
+        append_file "app/app.coffee", routes
       end
 
       private

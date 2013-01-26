@@ -6,6 +6,7 @@ module Omega
 
     def call(env)
       if env['PATH_INFO'].start_with?("/assets/")
+        env['PATH_INFO'].sub!("/assets", "")
         Omega::Assets.environment.call(env)
       else
         @app.call(env)

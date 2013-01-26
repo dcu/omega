@@ -18,8 +18,8 @@ require 'omega/application'
 require 'omega/controller'
 
 module Omega
-  def self.root
-    OMEGA_ROOT
+  def self.root(path = nil)
+    path ? "#{OMEGA_ROOT}/#{path}" : OMEGA_ROOT
   end
 
   def self.env

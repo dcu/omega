@@ -17,8 +17,7 @@ module Omega
     end
 
     def can_serve?(path)
-      # path traversal is handled by Rack::File
-      File.file?(path) && File.readable?("#{@public_folder}#{path}")
+      File.file?("#{@public_folder}#{path}") && File.readable?("#{@public_folder}#{path}") #&& !Rack::Utils.unescape(path).include?("..")
     end
   end
 end

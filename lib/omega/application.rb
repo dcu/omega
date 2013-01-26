@@ -49,7 +49,12 @@ module Omega
         url_params = Hash[*route_info[:keys].zip(captures).flatten]
         @params = url_params.merge(params)
       end
-      response.write eval_action(route_info)
+
+      if !request.xhr? && request.get?
+        response.write eval_layout(route_info)
+      else
+        response.write eval_action(route_info)
+      end
 
       throw :halt, response
     end
@@ -70,6 +75,11 @@ module Omega
       controller.env = @env
 
       controller.instance_eval(&route_info[:block])
+    end
+    
+    def eval_layout(route_info)
+      layout = route_info[:controller_class].layout || "application"
+      File.read(Omega.root("public/_templates/layouts/#{layout}.html"))
     end
 
     def compile_templates

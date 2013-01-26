@@ -1,3 +1,8 @@
 #<%= underscore_name %>-index
   %h1
     Hello from <%= class_name %>
+  
+  %ul
+    %li(ng-repeat="<%= resource_name %> in <%= collection_name %>")
+      {{<%= resource_name %>._id}}
+

@@ -10,6 +10,10 @@ module Omega
           end
         end
       end
+
+      def layout(layout = nil)
+        @layout ||= layout
+      end
     end
 
     def halt(status, body = nil, headers = nil)
