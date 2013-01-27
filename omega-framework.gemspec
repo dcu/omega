@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = "2013-01-25"
+  s.date = "2013-01-27"
   s.description = "Ruby web framework to create angular-based applications."
   s.email = "krawek@gmail.com"
   s.executables = ["omega"]
@@ -38,11 +38,17 @@ Gem::Specification.new do |s|
     "lib/omega/generators/templates/project/layout.haml.erb",
     "lib/omega/generators/templates/project/mongoid.yml.erb",
     "lib/omega/generators/templates/scaffold/controller.rb.erb",
+    "lib/omega/generators/templates/scaffold/edit_controller.coffee.erb",
+    "lib/omega/generators/templates/scaffold/edit_style.sass.erb",
+    "lib/omega/generators/templates/scaffold/edit_view.haml.erb",
     "lib/omega/generators/templates/scaffold/index_controller.coffee.erb",
     "lib/omega/generators/templates/scaffold/index_style.sass.erb",
     "lib/omega/generators/templates/scaffold/index_view.haml.erb",
     "lib/omega/generators/templates/scaffold/model.coffee.erb",
     "lib/omega/generators/templates/scaffold/model.rb.erb",
+    "lib/omega/generators/templates/scaffold/new_controller.coffee.erb",
+    "lib/omega/generators/templates/scaffold/new_style.sass.erb",
+    "lib/omega/generators/templates/scaffold/new_view.haml.erb",
     "lib/omega/generators/templates/scaffold/show_controller.coffee.erb",
     "lib/omega/generators/templates/scaffold/show_style.sass.erb",
     "lib/omega/generators/templates/scaffold/show_view.haml.erb",
@@ -61,11 +67,13 @@ Gem::Specification.new do |s|
     "lib/omega/generators/templates/skel/assets/javascripts/application.coffee",
     "lib/omega/generators/templates/skel/assets/layouts/.empty_directory",
     "lib/omega/generators/templates/skel/assets/stylesheets/.empty_directory",
+    "lib/omega/generators/templates/skel/assets/stylesheets/application.sass",
     "lib/omega/generators/templates/skel/config.ru",
     "lib/omega/generators/templates/skel/config/boot.rb",
     "lib/omega/generators/templates/skel/config/env.rb.sample",
     "lib/omega/generators/templates/skel/config/initializers/.empty_directory",
     "lib/omega/router.rb",
+    "lib/omega/static.rb",
     "omega-framework.gemspec",
     "skel/Gemfile",
     "skel/Procfile",
@@ -105,6 +113,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<mongoid>, [">= 0"])
       s.add_runtime_dependency(%q<haml>, [">= 0"])
       s.add_runtime_dependency(%q<sass>, [">= 0"])
+      s.add_runtime_dependency(%q<rack-parser>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<yard>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
@@ -115,6 +124,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<mongoid>, [">= 0"])
       s.add_dependency(%q<haml>, [">= 0"])
       s.add_dependency(%q<sass>, [">= 0"])
+      s.add_dependency(%q<rack-parser>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<yard>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -126,6 +136,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<mongoid>, [">= 0"])
     s.add_dependency(%q<haml>, [">= 0"])
     s.add_dependency(%q<sass>, [">= 0"])
+    s.add_dependency(%q<rack-parser>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<yard>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
