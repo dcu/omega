@@ -16,7 +16,7 @@ module Omega
 
     desc "start", "Starts a development server"
     def start
-      require './config/boot'
+      require "./config/boot"
 
       server_options = {}
       server_options[:Host] = '0.0.0.0'
@@ -26,6 +26,13 @@ module Omega
 
       server = Rack::Server.new(server_options)
       server.start
+    end
+
+    desc "console", "Starts a console"
+    def console
+      require "./config/boot"
+
+      Pry.start(TOPLEVEL_BINDING)
     end
   end
 end
