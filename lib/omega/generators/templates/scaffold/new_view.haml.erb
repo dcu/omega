@@ -2,13 +2,17 @@
   %h1
     New <%= class_name %>
 
-  %form(ng-submit="save()")
-    <%- fields.each do |name, type| %>
+  %form.form-horizontal(ng-submit="save()")
+    <%- fields.each do |name, type| -%>
     <%- next if name =~ /(^_)|(_id$)/ %>
-    %label(for="<%= name %>")
-      <%= name.titleize %>
-    %input(type="text" name="<%= name %>" ng-model="<%= resource_name %>.<%= name %>")
+
+    .control-group
+      %label.control-label(for="<%= name %>")
+        <%= name.titleize %>
+      .controls
+        %input(type="text" name="<%= name %>" ng-model="<%= resource_name %>.<%= name %>")
     <%- end %>
-    %button(type="submit")
-      Create <%= resource_name %>
+    .form-actions
+      %button.btn.btn-primary(type="submit")
+        Create <%= resource_name %>
 
