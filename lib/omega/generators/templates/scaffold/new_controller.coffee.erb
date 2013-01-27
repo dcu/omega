@@ -1,0 +1,11 @@
+window.<%= class_name %>NewController = ($scope, $location, $routeParams, <%= model_name %>) ->
+  $scope.save = ->
+    <%= model_name %>.save
+      <%= resource_name %>: @<%= resource_name %>
+    ,
+      (<%= resource_name %>) -> # success
+        $location.path "<%= route %>/" + <%= resource_name %>._id
+    ,
+      (error_response) -> # error
+        console.log(error_response)
+

@@ -1,0 +1,14 @@
+#<%= underscore_name %>-edit
+  %h1
+    Editing <%= class_name %>
+
+  %form(ng-submit="save()")
+    <%- fields.each do |name, type| %>
+    <%- next if name =~ /(^_)|(_id$)/ %>
+    %label(for="<%= name %>")
+      <%= name.titleize %>
+    %input(type="text" name="<%= name %>" ng-model="<%= resource_name %>.<%= name %>")
+    <%- end %>
+    %button(type="submit")
+      Update <%= resource_name %>
+

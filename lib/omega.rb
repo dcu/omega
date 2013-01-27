@@ -10,6 +10,7 @@ require 'sprockets'
 require 'active_support'
 require 'active_support/core_ext/hash'
 require 'rack/builder'
+require 'rack/parser'
 
 require 'omega/router'
 require 'omega/assets'

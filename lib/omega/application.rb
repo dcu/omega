@@ -14,6 +14,7 @@ module Omega
         builder.use Rack::CommonLogger
         builder.use Omega::Static, :public_folder => "#{Omega.root}/public"
         builder.use Omega::Assets
+        builder.use Rack::Parser
         builder.run self.new
         builder
       end

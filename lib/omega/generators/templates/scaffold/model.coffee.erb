@@ -4,6 +4,9 @@ angular.module("<%= resource_name %>_model", ["ngResource"]).factory "<%= model_
   ,
     update:
       method: "PUT"
+
+    destroy:
+      method: "DELETE"
   )
 
   return <%= model_name %>

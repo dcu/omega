@@ -1,3 +1,10 @@
 #<%= underscore_name %>-show
   %h1
-    Hello from <%= class_name %>
+    Editing <%= resource_name %>
+
+  ID: {{<%= resource_name %>._id}}
+  Name: {{<%= resource_name %>.name}}
+
+  %a(ng-href="/posts/{{<%= resource_name %>._id}}/edit")
+    Edit
+

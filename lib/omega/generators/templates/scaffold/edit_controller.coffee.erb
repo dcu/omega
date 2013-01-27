@@ -1,0 +1,15 @@
+window.<%= class_name %>EditController = ($scope, $location, $routeParams, <%= model_name %>) ->
+  $scope.<%= resource_name %> = <%= model_name %>.get($routeParams)
+
+  $scope.save = ->
+    <%= model_name %>.update
+      id: $scope.<%= resource_name %>._id
+    ,
+      <%= resource_name %>: angular.extend({}, $scope.<%= resource_name %>, {_id: `undefined`})
+    ,
+      (<%= resource_name %>) -> # success
+        $location.path "<%= route %>/#{<%= resource_name %>._id}"
+    ,
+      (error_response) -> #error
+        console.log(error_response)
+

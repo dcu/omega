@@ -1,3 +1,3 @@
-window.<%= class_name %>ShowController = ($scope, $location, $routeParams, <%= resource_name %>) ->
+window.<%= class_name %>ShowController = ($scope, $location, $routeParams, <%= model_name %>) ->
   $scope.<%= resource_name %> = <%= model_name %>.get($routeParams)
 
