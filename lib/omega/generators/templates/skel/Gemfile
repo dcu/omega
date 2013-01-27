@@ -1,6 +1,6 @@
 
 ruby "1.9.3"
 
-gem "omega-framework", :path => ".."
+gem "omega-framework", :require => "omega"#, :path => ".."
 gem "thin"
 

@@ -6,6 +6,7 @@ gem "coffee-script"
 gem "mongoid"
 gem "haml"
 gem "sass"
+gem "pry"
 gem "rack-parser", :require => "rack/parser"
 
 group :development do
