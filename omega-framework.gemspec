@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = "2013-01-27"
+  s.date = "2013-02-17"
   s.description = "Ruby web framework to create angular-based applications."
   s.email = "krawek@gmail.com"
   s.executables = ["omega"]
@@ -72,8 +72,11 @@ Gem::Specification.new do |s|
     "lib/omega/generators/templates/skel/config/boot.rb",
     "lib/omega/generators/templates/skel/config/env.rb.sample",
     "lib/omega/generators/templates/skel/config/initializers/.empty_directory",
+    "lib/omega/generators/templates/skel/log/.empty_directory",
     "lib/omega/router.rb",
     "lib/omega/static.rb",
+    "lib/omega/tasks.rb",
+    "lib/omega/tasks/mongoid.rake",
     "omega-framework.gemspec",
     "skel/Gemfile",
     "skel/Procfile",

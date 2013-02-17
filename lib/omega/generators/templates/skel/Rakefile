@@ -1,0 +1,4 @@
+require 'bundler'
+require "#{Bundler.root}/config/boot"
+require "omega/tasks"
+

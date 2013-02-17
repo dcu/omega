@@ -11,6 +11,7 @@ require 'active_support'
 require 'active_support/core_ext/hash'
 require 'rack/builder'
 require 'rack/parser'
+require 'logger'
 
 require 'omega/router'
 require 'omega/assets'
@@ -37,6 +38,10 @@ module Omega
     Omega.require_files!
     Omega::Assets.setup!
     Omega::Router.sort_routes!
+  end
+
+  def self.logger
+    @logger ||= Logger.new(env == :development ? STDERR : Omega.root("log/#{env}"))
   end
 end
 
