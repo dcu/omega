@@ -51,7 +51,7 @@ module Omega
         @params = url_params.merge(params)
       end
 
-      if !request.xhr? && request.get?
+      if !request.xhr? && request.get? && params["format"] != "json"
         response.write eval_layout(route_info)
       else
         response.write eval_action(route_info)
