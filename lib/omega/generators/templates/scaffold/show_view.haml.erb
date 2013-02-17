@@ -1,10 +1,10 @@
 #<%= underscore_name %>-show
   %h1
-    Editing <%= resource_name %>
+    Viewing <%= resource_name %>
 
   ID: {{<%= resource_name %>._id}}
   Name: {{<%= resource_name %>.name}}
 
-  %a(ng-href="/posts/{{<%= resource_name %>._id}}/edit")
+  %a(ng-href="<%= route %>/{{<%= resource_name %>._id}}/edit")
     Edit
 

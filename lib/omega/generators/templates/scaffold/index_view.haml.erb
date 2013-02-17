@@ -4,9 +4,9 @@
 
   %ul
     %li(ng-repeat="<%= resource_name %> in <%= collection_name %>")
-      %a(ng-href="/posts/{{<%= resource_name %>._id}}")
+      %a(ng-href="<%= route %>/{{<%= resource_name %>._id}}")
         {{<%= resource_name %>.name}}
 
-  %a(ng-href="/posts/new")
+  %a(ng-href="<%= route %>/new")
     Create a new <%= resource_name %>
 
