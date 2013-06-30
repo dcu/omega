@@ -15,9 +15,20 @@ module Omega
         builder.use Omega::Static, :public_folder => "#{Omega.root}/public"
         builder.use Omega::Assets
         builder.use Rack::Parser
+        builder.use Rack::Session::Cookie, cookie_options
         builder.run self.new
         builder
       end
+    end
+
+    def self.cookie_options
+      cookie_options = {
+        :key => ENV["COOKIE_NAME"],
+        :secret => ENV["SESSION_SECRET"]
+      }
+      cookie_options[:expires_after] = ENV["EXPIRE_COOKIE_AFTER"].to_i if ENV["EXPIRE_COOKIE_AFTER"]
+
+      cookie_options
     end
 
     def self.instance

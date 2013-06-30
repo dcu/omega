@@ -16,6 +16,10 @@ module Omega
       end
     end
 
+    def session
+      request.session
+    end
+
     def halt(status, body = nil, headers = nil)
       @_application.halt(status, body, headers)
     end
