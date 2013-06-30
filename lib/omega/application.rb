@@ -62,7 +62,7 @@ module Omega
 
     def halt(status, body = nil, headers = nil)
       @response.status = status
-      @response.body = body if body
+      @response.write(body) if body
       @response.header.merge!(headers) if headers
 
       throw :halt, @response

@@ -25,7 +25,7 @@ module Omega
     end
 
     def respond_with(object)
-      object.to_json
+      halt 200, object.to_json
     end
   end
 end
