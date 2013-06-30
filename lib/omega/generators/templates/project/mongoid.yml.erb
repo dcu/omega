@@ -6,7 +6,7 @@ development:
       database: <%= dbname %>-development
   options:
     allow_dynamic_fields: false
-    identity_map_enabled: true
+    identity_map_enabled: false
     include_root_in_json: false
     include_type_for_serialization: true
     preload_models: false
@@ -24,7 +24,7 @@ test:
       database: <%= dbname %>-test
   options:
     allow_dynamic_fields: false
-    identity_map_enabled: true
+    identity_map_enabled: false
     include_root_in_json: false
     include_type_for_serialization: true
     preload_models: false
@@ -40,7 +40,7 @@ production:
       uri: <%%= ENV['MONGOHQ_URL'] %>
   options:
     allow_dynamic_fields: false
-    identity_map_enabled: true
+    identity_map_enabled: false
     include_root_in_json: false
     include_type_for_serialization: true
     preload_models: false
