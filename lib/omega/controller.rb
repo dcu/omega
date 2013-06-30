@@ -1,6 +1,6 @@
 module Omega
   class Controller
-    attr_accessor :request, :response, :params, :env
+    attr_accessor :request, :response, :params, :env, :_application
 
     class << self
       %w[GET HEAD POST PUT PATCH DELETE].each do |http_method|
@@ -17,7 +17,7 @@ module Omega
     end
 
     def halt(status, body = nil, headers = nil)
-      Omega::Application.instance.halt(status, body, headers)
+      @_application.halt(status, body, headers)
     end
 
     def ok

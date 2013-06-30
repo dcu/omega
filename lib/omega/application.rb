@@ -70,6 +70,7 @@ module Omega
 
     def eval_action(route_info)
       controller = route_info[:controller_class].new
+      controller._application = self
       controller.request = @request
       controller.response = @response
       controller.params = @params.with_indifferent_access
