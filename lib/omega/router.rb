@@ -22,19 +22,20 @@ module Omega
       end
     end
 
-    def self.add_route(controller_class, http_method, name, pattern, block)
-      route_info = {
+    def self.add_route(controller_class, route_info)
+      http_method = route_info[:method]
+      route_info.merge!({
         :controller_class => controller_class,
-        :name => name,
-        :pattern => pattern,
-        :block => block,
         :keys => []
-      }
-      matcher = pattern.gsub(/(:\w+)/) do |match|
+      })
+
+      matcher = route_info[:pattern].gsub(/(:\w+)/) do |match|
         route_info[:keys] << $1[1..-1]
         "([^/?#]+)"
       end
       route_info[:matcher] = %r{^#{matcher}$}
+
+      Omega.logger.info "Added route #{http_method.upcase} #{controller_class}##{route_info[:name]} #{route_info[:pattern]}"
 
       routes[http_method] << route_info
     end

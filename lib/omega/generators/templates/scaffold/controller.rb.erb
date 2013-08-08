@@ -1,10 +1,12 @@
 class <%= class_name %>Controller < Omega::Controller
-  get :index => "<%= route %>" do
+  helper :common
+
+  get :index, "<%= route %>" do
     @<%= collection_name %> = <%= model_name %>.all
     respond_with(@<%= collection_name %>)
   end
 
-  post :create => "<%= route %>" do
+  post :create, "<%= route %>" do
     @<%= resource_name %> = <%= model_name %>.create(params[:<%= resource_name %>])
 
     # if @<%= resource_name %> is invalid it responds 403 and the error messages
@@ -12,19 +14,19 @@ class <%= class_name %>Controller < Omega::Controller
     respond_with(@<%= resource_name %>)
   end
 
-  get :show => "<%= route %>/:id" do
+  get :show, "<%= route %>/:id" do
     @<%= resource_name %> = <%= model_name %>.find(params[:id])
     respond_with(@<%= resource_name %>)
   end
 
-  put :update => "<%= route %>/:id" do
+  put :update, "<%= route %>/:id" do
     @<%= resource_name %> = <%= model_name %>.find(params[:id])
     @<%= resource_name %>.update_attributes(params[:<%= resource_name %>])
 
     respond_with(@<%= resource_name %>)
   end
 
-  delete :destroy => "<%= route %>/:id" do
+  delete :destroy, "<%= route %>/:id" do
     @<%= resource_name %> = <%= model_name %>.find(params[:id])
     @<%= resource_name %>.destroy
     halt 200

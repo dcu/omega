@@ -29,6 +29,10 @@ module Omega
   end
 
   def self.require_files!
+    Dir["#{Omega.root}/app/{models,helpers}/**/*.rb"].each do |file_path|
+      require file_path
+    end
+
     Dir["#{Omega.root}/app/**/**/*.rb"].each do |file_path|
       require file_path
     end
