@@ -1,5 +1,5 @@
 class WelcomeController < Omega::Controller
-  get :index => "/" do
+  get :index, "/" do
     ok
   end
 end

@@ -27,12 +27,15 @@ module Omega
       end
 
       def download_angular
-        get "http://code.angularjs.org/1.0.3/angular.js", "#{name}/assets/javascripts/angular.js"
+        get "http://code.angularjs.org/1.2.1/angular.js", "#{name}/assets/javascripts/angular.js"
 
         [
-          "http://code.angularjs.org/1.0.3/angular-resource.js",
-          "http://code.angularjs.org/1.0.3/angular-cookies.js",
-          "http://code.angularjs.org/1.0.3/angular-sanitize.js"
+          "http://code.angularjs.org/1.2.1/angular-resource.js",
+          "http://code.angularjs.org/1.2.1/angular-animate.js",
+          "http://code.angularjs.org/1.2.1/angular-route.js",
+          "http://code.angularjs.org/1.2.1/angular-touch.js",
+          "http://code.angularjs.org/1.2.1/angular-cookies.js",
+          "http://code.angularjs.org/1.2.1/angular-sanitize.js"
         ].each do |url|
           get url, "#{name}/assets/javascripts/angular/#{url.split("/").last}"
         end
@@ -40,19 +43,10 @@ module Omega
 
       def download_bootstrap
         # stylesheets
-        get "http://twitter.github.com/bootstrap/assets/css/bootstrap.css", "#{name}/assets/stylesheets/bootstrap.css"
-        empty_directory "#{name}/assets/stylesheets/bootstrap"
-        get "http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css", "#{name}/assets/stylesheets/bootstrap/bootstrap-responsive.css"
+        get "http://getbootstrap.com/dist/css/bootstrap.min.css", "#{name}/assets/stylesheets/bootstrap.css"
 
         # javascripts
-        get "http://twitter.github.com/bootstrap/assets/js/bootstrap.js", "#{name}/assets/javascripts/bootstrap.js"
-        empty_directory "#{name}/assets/javascripts/bootstrap"
-
-        %w[bootstrap-transition bootstrap-alert bootstrap-modal bootstrap-dropdown bootstrap-scrollspy 
-           bootstrap-tab bootstrap-tooltip bootstrap-popover bootstrap-button bootstrap-collapse bootstrap-carousel 
-           bootstrap-typeahead bootstrap-affix].each do |plugin|
-          get "http://twitter.github.com/bootstrap/assets/js/#{plugin}.js", "#{name}/assets/javascripts/bootstrap/#{plugin}.js"
-        end
+        get "http://getbootstrap.com/dist/js/bootstrap.min.js", "#{name}/assets/javascripts/bootstrap.js"
       end
 
       private
