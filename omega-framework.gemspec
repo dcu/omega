@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "omega-framework"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David A. Cuadrado"]
-  s.date = "2013-06-29"
+  s.date = "2013-11-24"
   s.description = "Ruby web framework to create angular-based applications."
   s.email = "krawek@gmail.com"
   s.executables = ["omega"]
@@ -56,6 +56,7 @@ Gem::Specification.new do |s|
     "lib/omega/generators/templates/skel/Procfile",
     "lib/omega/generators/templates/skel/README.md",
     "lib/omega/generators/templates/skel/Rakefile",
+    "lib/omega/generators/templates/skel/app/helpers/common_helper.rb",
     "lib/omega/generators/templates/skel/app/models/.empty_directory",
     "lib/omega/generators/templates/skel/app/welcome/views/index_controller.coffee",
     "lib/omega/generators/templates/skel/app/welcome/views/index_style.sass",

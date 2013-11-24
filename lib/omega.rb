@@ -1,25 +1,27 @@
 require 'json'
 require 'set'
-require 'pry'
 require 'find'
-require 'haml'
-require 'sass'
-
-require 'mongoid'
-require 'sprockets'
 require 'active_support'
 require 'active_support/core_ext/hash'
-require 'rack/builder'
-require 'rack/parser'
-require 'logger'
 
-require 'omega/router'
-require 'omega/assets'
-require 'omega/static'
-require 'omega/application'
-require 'omega/controller'
+autoload :Mongoid, 'mongoid'
+autoload :Sprockets, 'sprockets'
+autoload :Logger, 'logger'
+autoload :Haml, 'haml'
+autoload :Sass, 'sass'
+
+module Rack
+  autoload :Builder, 'rack/builder'
+  autoload :Parser, 'rack/parser'
+end
 
 module Omega
+  autoload :Router, 'omega/router'
+  autoload :Assets, 'omega/assets'
+  autoload :Static, 'omega/static'
+  autoload :Application, 'omega/application'
+  autoload :Controller, 'omega/controller'
+
   def self.root(path = nil)
     path ? "#{OMEGA_ROOT}/#{path}" : OMEGA_ROOT
   end
@@ -38,10 +40,25 @@ module Omega
     end
   end
 
+  def self.after_loading(&block)
+    self.after_loading_callbacks.push(block)
+  end
+
+  def self.after_loading_callbacks
+    @after_loading_callbacks ||= []
+  end
+
   def self.load!
-    Omega.require_files!
-    Omega::Assets.setup!
-    Omega::Router.sort_routes!
+    Thread.start do
+      Omega.require_files!
+      Omega::Assets.setup!
+
+      Omega::Router.sort_routes!
+
+      Omega.after_loading_callbacks.each do |callback|
+        callback.call
+      end
+    end
   end
 
   def self.logger

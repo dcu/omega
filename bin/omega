@@ -2,10 +2,11 @@
 
 $:.unshift File.expand_path("../../lib", __FILE__)
 
+require 'bundler/setup'
 require 'omega'
 require 'omega/generators'
-require 'rack/handler'
 require 'thin'
+require 'rack/handler'
 
 module Omega
   class CLI < Thor
