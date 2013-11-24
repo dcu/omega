@@ -3,8 +3,9 @@ OMEGA_ENV  = (ENV['OMEGA_ENV'] ||= ENV['RACK_ENV'] ||= 'development').to_sym  un
 OMEGA_ROOT = File.expand_path('../..', __FILE__) unless defined?(OMEGA_ROOT)
 
 require 'rubygems' unless defined?(Gem)
-require 'bundler/setup'
-Bundler.require(:default, OMEGA_ENV)
+require 'bundler'
+
+Bundler.setup(:default, OMEGA_ENV)
 
 # Load local config
 require Omega.root("/config/env.rb") if File.exist?(Omega.root("/config/env.rb"))

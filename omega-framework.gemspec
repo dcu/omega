@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = "2013-11-24"
   s.description = "Ruby web framework to create angular-based applications."
   s.email = "krawek@gmail.com"
-  s.executables = ["omega"]
+  s.executables = ["omega", "omega-cli"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/omega",
+    "bin/omega-cli",
     "lib/omega.rb",
     "lib/omega/application.rb",
     "lib/omega/assets.rb",
